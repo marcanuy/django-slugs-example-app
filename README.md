@@ -1,7 +1,7 @@
 # django-slugs-example-app
 A basic app to show how to generate slugs based in a  model's field.
 
-Full explanation: 
+Full explanation: https://simpleit.rocks/python/django/generating-slugs-automatically-in-django-easy-solid-approaches/
 
 # Installation
 
