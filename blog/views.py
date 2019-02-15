@@ -2,7 +2,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
 
-from blog.models import Article
+from blog.models import Article, ArticlePkAndSlug
 
 class ArticleDetailView(DetailView):
 
@@ -16,3 +16,6 @@ class ArticleCreateView(CreateView):
     model = Article
     fields = ['title']
 
+
+class ArticlePkAndSlug(DetailView):
+    model = ArticlePkAndSlug
