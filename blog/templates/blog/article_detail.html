@@ -3,6 +3,10 @@
 	<title>{{ object.title }}</title>
     </head>
     <body>
-    <h1>{{ object.title }}</h1>
+	<h1>{{ object.title }}</h1>
+	{% if object.slug %}
+	<p><strong>slug</strong>: {{object.slug}}</p>
+	{% endif %}
+	<p>Article URL: {{ object.get_absolute_url }}</p>
     </body>
 </html>
