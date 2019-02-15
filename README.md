@@ -13,12 +13,16 @@ source ~/.virtualenvs/django-slugs-example-app/bin/activate
 
 Run example site: `./manage.py runserver`.
 
+# Models
+
+![models](blog_models.png "blog models UML")
+
 # Views
 
-URL                           | Module                                          | Name                    | Decorator
---------------------------------------+---------------------------------------------------------+---------------------------------+-
-/                          | blog.views.ArticleListView             | article-list           | 
-/blog/<int:pk>-<str:slug>/ | blog.views.ArticlePkAndSlugDetailView  | article-pk-slug-detail | 
-/blog/<int:pk>/            | blog.views.ArticleDetailView           | article-detail         | 
-/blog/<str:slug>           | blog.views.ArticleUniqueSlugDetailView | articleunique-slug     | 
-/blog/create               | blog.views.ArticleCreateView           | article-create         | 
+~~~
+/                            blog.views.ArticleListView               article-list             
+/blog/<int:pk>-<str:slug>/   blog.views.ArticlePkAndSlugDetailView    article-pk-slug-detail   
+/blog/<int:pk>/              blog.views.ArticleDetailView             article-detail           
+/blog/<str:slug>             blog.views.ArticleUniqueSlugDetailView   articleunique-slug       
+/blog/create                 blog.views.ArticleCreateView             article-create
+~~~
