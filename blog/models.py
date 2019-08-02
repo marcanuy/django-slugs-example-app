@@ -25,8 +25,7 @@ class ArticleUniqueSlug(Article):
         }
         return reverse('articleunique-slug', kwargs=kwargs)
 
-
-    def save(self, *args, **kwargs):
+    def _generate_slug(self):
         max_length = self._meta.get_field('slug').max_length
         value = self.title
         slug_candidate = slug_original = slugify(value, allow_unicode=True)
@@ -36,6 +35,11 @@ class ArticleUniqueSlug(Article):
             slug_candidate = '{}-{}'.format(slug_original, i)
 
         self.slug = slug_candidate
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self._generate_slug()
+
         super().save(*args, **kwargs)
 
 
