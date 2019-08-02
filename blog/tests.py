@@ -2,8 +2,8 @@ from django.test import TestCase
 
 from .factories import ArticleUniqueSlugFactory
 
+
 class ArticleUniqueSlugTests(TestCase):
-    
     def test_generates_slug(self):
         article = ArticleUniqueSlugFactory.create()
 

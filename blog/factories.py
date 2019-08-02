@@ -1,6 +1,7 @@
 import factory
 from . import models
 
+
 class ArticleUniqueSlugFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = models.ArticleUniqueSlug
