@@ -3,11 +3,12 @@ django-extensions==2.1.5
 dj_database_url
 factory-boy==2.12.0
 Faker==2.0.0
+gunicorn==20.0.4
 pydotplus==2.0.2
 pyparsing==2.3.1
 python-dateutil==2.8.0
 pytz==2019.2
-gunicorn==20.0.4
+psycopg2-binary==2.8.4
 six==1.12.0
 sqlparse==0.3.0
 text-unidecode==1.2
