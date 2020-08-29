@@ -20,10 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "x8$!0%m@0vfl!m0(dv@%20y7n)#zvh)wupy@da&mq-&n^zze5#"
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "x8$!0%m@0vfl!m0(dv@%20y7n)#zvh)wupy@da&mq-&n^zze5#")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DJANGO_DEBUG", True)
 
 ALLOWED_HOSTS = [
     'django-slugs-example-app.herokuapp.com',
@@ -119,3 +119,8 @@ USE_TZ = True
 STATIC_URL = "/static/"
 
 BLOG_TITLE_MAX_LENGTH = 100
+
+if DEBUG:
+    import dj_database_url
+    DATABASE_URL = os.environ.get("DJANGO_DATABASE_URL")
+    DATABASES['default'] = dj_database_url.config(default=DATABASE_URL)
