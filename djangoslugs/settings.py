@@ -120,7 +120,7 @@ STATIC_URL = "/static/"
 
 BLOG_TITLE_MAX_LENGTH = 100
 
-if DEBUG:
+if not DEBUG:
     import dj_database_url
-    DATABASE_URL = os.environ.get("DJANGO_DATABASE_URL")
+    DATABASE_URL = os.environ.get("DATABASE_URL")
     DATABASES['default'] = dj_database_url.config(default=DATABASE_URL)
