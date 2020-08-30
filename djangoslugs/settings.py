@@ -22,8 +22,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "x8$!0%m@0vfl!m0(dv@%20y7n)#zvh)wupy@da&mq-&n^zze5#")
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DJANGO_DEBUG", True)
+# The value of the DEBUG will be True by default, but
+# will be False if the value of the DJANGO_DEBUG environment variable
+# is set to an empty string, e.g. DJANGO_DEBUG=''.  variable values
+# are stored as Python strings, and the only string that evaluates as
+# False is the empty string (e.g. bool('')==False)
+DEBUG = bool(os.environ.get("DJANGO_DEBUG", True))
 
 ALLOWED_HOSTS = [
     'django-slugs-example-app.herokuapp.com',
