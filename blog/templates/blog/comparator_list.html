@@ -8,12 +8,15 @@
 
     <p><a href="{% url 'article-create' %}">Generate Article Title</a></p>
 
+    <p>Title maximum length: <strong>{{settings.BLOG_TITLE_MAX_LENGTH}}</strong></p>
     <table class="table">
 	<thead>
 	    <tr>
 		<th scope="col">Title</th>
 		<th scope="col">Pk Slug</th>
+		<th scope="col">Slug length</th>
 		<th scope="col">Unique Slug</th>
+		<th scope="col">Slug length</th>
 	    </tr>
 	</thead>
 	<tbody>
