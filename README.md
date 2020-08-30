@@ -9,8 +9,8 @@ Demo: https://django-slugs-example-app.herokuapp.com/ (db reset daily)
 
 ~~~ bash
 python3 -m venv ~/.virtualenvs/django-slugs-example-app
-pip install -r requirements.txt
 source ~/.virtualenvs/django-slugs-example-app/bin/activate
+pip install -r requirements.txt
 ./manage.py migrate
 ~~~
 
@@ -18,14 +18,13 @@ Run example site: `./manage.py runserver`.
 
 # Models
 
-![models](blog_models.png "blog models UML")
+![models](models.png "models UML")
 
-# Views
+# URLs
 
 ~~~
-/                            blog.views.ArticleListView               article-list             
-/blog/<int:pk>-<str:slug>/   blog.views.ArticlePkAndSlugDetailView    article-pk-slug-detail   
-/blog/<int:pk>/              blog.views.ArticleDetailView             article-detail           
-/blog/<str:slug>             blog.views.ArticleUniqueSlugDetailView   articleunique-slug       
-/blog/create                 blog.views.ArticleCreateView             article-create
+/	blog.views.ComparatorListView	article-list
+/blog/<int:pk>-<str:slug>/	blog.views.ArticlePkAndSlugDetailView	article-pk-slug-detail
+/blog/<str:slug>	blog.views.ArticleUniqueSlugDetailView	articleunique-slug
+/blog/create	blog.views.ComparatorFormView	article-create
 ~~~
