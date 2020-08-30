@@ -6,6 +6,7 @@ def site_settings(request):
     result = {}
     settings = [
         "BLOG_TITLE_MAX_LENGTH",
+        "BLOG_UNIQUE_SLUG_MAX_LENGTH"
     ]
     for attr in settings:
         if (hasattr(django_settings, attr)):

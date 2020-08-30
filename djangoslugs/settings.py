@@ -67,6 +67,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                'blog.context_processors.site_settings'
             ]
         },
     }
@@ -118,7 +119,8 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-BLOG_TITLE_MAX_LENGTH = 100
+BLOG_TITLE_MAX_LENGTH = 30 # small number to make it easier to see how it behaves in border cases
+BLOG_UNIQUE_SLUG_MAX_LENGTH = 20
 
 if not DEBUG:
     import dj_database_url

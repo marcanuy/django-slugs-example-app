@@ -8,7 +8,7 @@
 
     <p><a href="{% url 'article-create' %}">Generate Article Title</a></p>
 
-    <p>Title maximum length: <strong>{{settings.BLOG_TITLE_MAX_LENGTH}}</strong></p>
+    <p>Title maximum length: <strong>{{settings.BLOG_TITLE_MAX_LENGTH}}</strong>. Unique slug maximum length: <strong>{{settings.BLOG_UNIQUE_SLUG_MAX_LENGTH}}</strong>.</p>
     <table class="table">
 	<thead>
 	    <tr>
@@ -24,7 +24,9 @@
 	    <tr>
 		<td>{{object.article_unique_slug.title}}</td>
 		<td><a href="{{object.article_pk_and_slug.get_absolute_url}}">{{object.article_pk_and_slug.get_absolute_url}}</a></td>
+		<td>{{object.article_pk_and_slug.slug_length}}</td>
 		<td><a href="{{object.article_unique_slug.get_absolute_url}}">{{object.article_unique_slug.get_absolute_url}}</a></td>
+		<td>{{object.article_unique_slug.slug_length}}</td>
 	    </tr>
 	    {%endfor%}
 	</tbody>
