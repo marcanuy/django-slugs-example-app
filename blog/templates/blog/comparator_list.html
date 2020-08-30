@@ -1,0 +1,33 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Articles{%endblock%}
+{% block content %}
+<div class="container">
+    <h1>Article list</h1>
+    <p> Each time you create an <em>Article</em> it generates one instance from ArticlePkAndSlug and another one from ArticleUniqueSlug.</p>
+
+    <p><a href="{% url 'article-create' %}">Generate Article Title</a></p>
+
+    <table class="table">
+	<thead>
+	    <tr>
+		<th scope="col">Title</th>
+		<th scope="col">Pk Slug</th>
+		<th scope="col">Unique Slug</th>
+	    </tr>
+	</thead>
+	<tbody>
+	    {% for object in object_list %}
+	    <tr>
+		<td>{{object.article_unique_slug.title}}</td>
+		<td><a href="{{object.article_pk_and_slug.get_absolute_url}}">{{object.article_pk_and_slug.get_absolute_url}}</a></td>
+		<td><a href="{{object.article_unique_slug.get_absolute_url}}">{{object.article_unique_slug.get_absolute_url}}</a></td>
+	    </tr>
+	    {%endfor%}
+	</tbody>
+    </table>
+</div>
+{% endblock %}
+
+
+

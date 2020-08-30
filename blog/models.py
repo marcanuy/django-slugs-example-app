@@ -5,16 +5,12 @@ from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
 
+# class ArticleMixin(object):
+#     title = models.CharField(max_length=settings.BLOG_TITLE_MAX_LENGTH)
 
-class Article(models.Model):
-    title = models.CharField(max_length=100)
-
-    def get_absolute_url(self):
-        return reverse("article-detail", args=[str(self.id)])
-
-
-class ArticleUniqueSlug(Article):
-
+#class ArticleUniqueSlug(ArticleMixin, models.Model):
+class ArticleUniqueSlug(models.Model):
+    title = models.CharField(max_length=settings.BLOG_TITLE_MAX_LENGTH)
     slug = models.SlugField(default="", editable=False, max_length=100)  # random length
 
     def get_absolute_url(self):
@@ -32,6 +28,9 @@ class ArticleUniqueSlug(Article):
 
         self.slug = slug_candidate
 
+    def get_absolute_url(self):
+        return reverse("articleunique-slug", args=[str(self.slug)])
+
     def save(self, *args, **kwargs):
         if not self.pk:
             self._generate_slug()
@@ -39,6 +38,7 @@ class ArticleUniqueSlug(Article):
         super().save(*args, **kwargs)
 
 
+#class ArticlePkAndSlug(ArticleMixin, models.Model):
 class ArticlePkAndSlug(models.Model):
     title = models.CharField(max_length=settings.BLOG_TITLE_MAX_LENGTH)
     slug = models.SlugField(
@@ -53,3 +53,18 @@ class ArticlePkAndSlug(models.Model):
         value = self.title
         self.slug = slugify(value, allow_unicode=True)
         super().save(*args, **kwargs)
+
+
+class Comparator(models.Model):
+    article_pk_and_slug = models.OneToOneField('ArticlePkAndSlug', on_delete=models.CASCADE)
+    article_unique_slug = models.OneToOneField('ArticleUniqueSlug', on_delete=models.CASCADE)
+
+    @classmethod
+    def generate(cls, new_title):
+        pk_and_slug=ArticlePkAndSlug.objects.create(title=new_title)
+        unique_slug=ArticleUniqueSlug.objects.create(title=new_title)
+        comparator = cls.objects.create(
+            article_pk_and_slug = pk_and_slug,
+            article_unique_slug = unique_slug,
+        )
+        return comparator

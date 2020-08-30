@@ -1,12 +1,12 @@
-<html>
-    <head>
-	<title>{{ object.title }}</title>
-    </head>
-    <body>
-	<h1>{{ object.title }}</h1>
-	{% if object.slug %}
-	<p><strong>slug</strong>: {{object.slug}}</p>
-	{% endif %}
-	<p>Article URL: {{ object.get_absolute_url }}</p>
-    </body>
-</html>
+{% extends "blog/base.html" %}
+
+{% block title %}{{object.title}}{%endblock%}
+{% block content %}
+<h1>{{ object.title }}</h1>
+<p>PK: {{object.pk}}</p>
+<p>Title: {{object.title}}</p>
+{% if object.slug %}
+<p><strong>slug</strong>: {{object.slug}}</p>
+{% endif %}
+<p>URL: {{ object.get_absolute_url }}</p>
+{% endblock %}
