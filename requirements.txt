@@ -1,4 +1,4 @@
-Django==2.2.22
+Django==2.2.24
 django-extensions==2.1.5
 dj_database_url
 factory-boy==2.12.0
